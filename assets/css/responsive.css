@@ -1,0 +1,297 @@
+/* ===== RESPONSIVE STYLES ===== */
+
+/* Large Devices (Desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+    .container {
+        max-width: 960px;
+    }
+    
+    .property-slider {
+        overflow-x: auto;
+    }
+    
+    .property-card {
+        flex: 0 0 calc(50% - 20px);
+    }
+    
+    .property-features {
+        flex-wrap: wrap;
+    }
+    
+    .property-features .feature {
+        flex: 0 0 50%;
+        margin-bottom: 20px;
+    }
+    
+    .amenities-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .property-info-grid {
+        grid-template-columns: 3fr 2fr;
+    }
+    
+    .properties-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Medium Devices (Tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    .container {
+        max-width: 720px;
+    }
+    
+    .main-nav {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .header-contact {
+        justify-content: space-between;
+        width: 100%;
+    }
+    
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    
+    .hero-content h2 {
+        font-size: 28px;
+    }
+    
+    .search-options {
+        flex-wrap: wrap;
+    }
+    
+    .search-field {
+        flex: 0 0 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .about-content {
+        flex-direction: column;
+    }
+    
+    .about-text, .about-image {
+        flex: 0 0 100%;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .communities-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .mission-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .marketing-content {
+        flex-direction: column;
+    }
+    
+    .marketing-text, .marketing-services {
+        flex: 0 0 100%;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .selling-content {
+        flex-direction: column;
+    }
+    
+    .selling-image, .selling-text {
+        flex: 0 0 100%;
+    }
+    
+    .pm-services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .benefits-content {
+        flex-direction: column;
+    }
+    
+    .benefits-list, .benefits-image {
+        flex: 0 0 100%;
+    }
+    
+    .property-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .property-sidebar {
+        position: static;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .property-slider-main {
+        height: 400px;
+    }
+    
+    .step-card {
+        flex-direction: column;
+    }
+    
+    .step-number {
+        margin-bottom: 20px;
+    }
+}
+
+/* Small Devices (Landscape Phones, less than 768px) */
+@media (max-width: 767.98px) {
+    .container {
+        max-width: 540px;
+    }
+    
+    .hero {
+        height: 500px;
+    }
+    
+    .hero-content {
+        padding-top: 100px;
+    }
+    
+    .hero-content h1 {
+        font-size: 28px;
+    }
+    
+    .hero-content h2 {
+        font-size: 22px;
+    }
+    
+    .hero-content p {
+        font-size: 16px;
+    }
+    
+    .property-card {
+        flex: 0 0 calc(100% - 20px);
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .communities-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .copyright {
+        margin-bottom: 15px;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .properties-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .property-details-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .property-slider-main {
+        height: 300px;
+    }
+}
+
+/* Extra Small Devices (Portrait Phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .logo img {
+        height: 40px;
+    }
+    
+    .phone-number span {
+        display: none;
+    }
+    
+    .phone-number i {
+        font-size: 20px;
+    }
+    
+    .hero-content h1 {
+        font-size: 24px;
+    }
+    
+    .hero-content h2 {
+        font-size: 20px;
+    }
+    
+    .property-type-tabs {
+        flex-direction: column;
+    }
+    
+    .property-type-tabs .tab {
+        border-radius: 0;
+    }
+    
+    .search-box {
+        border-radius: 0;
+    }
+    
+    .back-to-top {
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .property-slider-main {
+        height: 250px;
+    }
+    
+    .property-features {
+        flex-direction: column;
+    }
+    
+    .property-features .feature {
+        width: 100%;
+    }
+    
+    .marketing-services {
+        grid-template-columns: 1fr;
+    }
+    
+    .agent-info {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .agent-image {
+        margin: 0 auto 15px;
+    }
+}

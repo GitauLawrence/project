@@ -27,7 +27,7 @@ require_once 'includes/functions.php';
                 <img src="https://i.pinimg.com/736x/fe/62/5b/fe625b89ef8ddf90b73aec7bfe7e2a49.jpg" alt="SELLAM">
             </div>
             <div class="about-text">
-                <h2>About SELLAM</h2>
+                <h2>About SELLAAM</h2>
                 <p>SELLAM is a real estate agency that utilizes world class technology and innovative marketing strategies to assist clients in achieving their real estate goals.</p>
                 <p>SELLAM's reputation is built on trust, transparency, and dedication, and we focus on creating lasting relationships with clients from around the world.</p>
                 <p>We constantly adapt to the dynamic and evolving real estate industry, blending timeless experience with innovation.</p>

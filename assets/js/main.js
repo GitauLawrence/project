@@ -83,76 +83,121 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
-    // --- ONLY ONE Contact Form Submission Block (the one with fetch API) ---
+    
+    // General Contact Form Submission
     const contactForm = document.getElementById('contact-form');
 
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent default form submission
-
-            // Get form data
-            const formData = new FormData(contactForm);
-
-            // You can add a loading state here (e.g., disable button, show spinner)
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-            submitButton.disabled = true;
-            submitButton.textContent = 'Sending...';
-
-            // Send data to PHP script using Fetch API
-            fetch('send_contact.php', { // <-- This is the URL to your PHP script
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json(); // Parse the JSON response from the PHP script
-            })
-            .then(data => {
-                alert(data.message); // Show message from PHP
-                if (data.success) {
-                    contactForm.reset(); // Clear form if successful
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('There was an error sending your message. Please try again later.');
-            })
-            .finally(() => {
-                submitButton.disabled = false;
-                submitButton.textContent = 'Send Message';
-            });
-        });
-    }
-
-    // Property Inquiry Form Submission (FIXED CLOSING BRACKET)
-    const propertyInquiryForm = document.getElementById('property-inquiry-form');
-
-    if (propertyInquiryForm) {
-        propertyInquiryForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Get form data
-            const formData = new FormData(propertyInquiryForm);
-            const formDataObj = {}; // This conversion isn't needed if you use FormData directly in fetch
+            const formData = new FormData(contactForm);
+            const formDataObj = {};
             formData.forEach((value, key) => {
                 formDataObj[key] = value;
             });
 
-            // Simulate form submission (in a real app, you would send this to your backend)
-            alert('Thank you for your inquiry! Our agent will contact you soon.');
-            propertyInquiryForm.reset();
-        }); // <-- CORRECTED CLOSING BRACKET FOR propertyInquiryForm LISTENER
-    } // <-- CORRECTED CLOSING BRACKET FOR propertyInquiryForm IF BLOCK
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton ? submitButton.textContent : 'Send Message';
+            if (submitButton) {
+                submitButton.textContent = 'Sending...';
+                submitButton.disabled = true;
+            }
+
+            fetch('process_inquiry.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(formDataObj).toString()
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => { throw new Error('HTTP error! Status: ' + response.status + ' - Response: ' + text); });
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    alert(data.message); // Re-enabling alert for success
+                    contactForm.reset();
+                } else {
+                    alert('Error: ' + data.message); // Re-enabling alert for error
+                }
+            })
+            .catch(error => {
+                console.error('Fetch Error:', error); // Keep console error for silent debugging
+                alert('An error occurred during submission. Please try again.');
+            })
+            .finally(() => {
+                if (submitButton) {
+                    submitButton.textContent = originalButtonText;
+                    submitButton.disabled = false;
+                }
+            });
+        });
+    }
+
+    // Property Inquiry Form Submission
+    const propertyInquiryForm = document.getElementById('property-inquiry-form');
+
+    if (propertyInquiryForm) {
+        propertyInquiryForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            const formData = new FormData(propertyInquiryForm);
+            const formDataObj = {};
+            formData.forEach((value, key) => {
+                formDataObj[key] = value;
+            });
+
+            const submitButton = propertyInquiryForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton ? submitButton.textContent : 'Send Message';
+            if (submitButton) {
+                submitButton.textContent = 'Sending...';
+                submitButton.disabled = true;
+            }
+
+            fetch('process_inquiry.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(formDataObj).toString()
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => { throw new Error('HTTP error! Status: ' + response.status + ' - Response: ' + text); });
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    alert(data.message); // Re-enabling alert for success
+                    propertyInquiryForm.reset();
+                } else {
+                    alert('Error: ' + data.message); // Re-enabling alert for error
+                }
+            })
+            .catch(error => {
+                console.error('Fetch Error:', error); // Keep console error for silent debugging
+                alert('An error occurred during submission. Please try again.');
+            })
+            .finally(() => {
+                if (submitButton) {
+                    submitButton.textContent = originalButtonText;
+                    submitButton.disabled = false;
+                }
+            });
+        });
+    }
 
     // === Review Carousel ===/
     const slides = document.querySelectorAll(".review-slide");
     const prevBtn = document.getElementById("prev-review");
     const nextBtn = document.getElementById("next-review");
 
-    if (slides.length && prevBtn && nextBtn) { // More robust check
+    if (slides.length && prevBtn && nextBtn) {
         let currentSlide = 0;
 
         function showSlide(index) {
